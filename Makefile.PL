@@ -30,6 +30,7 @@ my %WriteMakefileArgs = (
     'File::Temp' => '0.22',
     'IPC::Cmd' => '0.58',
     'Module::Build' => '0.3607',
+    'Module::Load::Conditional' => '0.38',
     'Module::Pluggable' => '3.9',
     'Moose' => '1.07',
     'MooseX::Types::Moose' => '0.22',
@@ -37,7 +38,7 @@ my %WriteMakefileArgs = (
     'Params::Check' => '0.26',
     'Software::License' => '0.101620'
   },
-  'VERSION' => '0.02',
+  'VERSION' => '0.04',
   'test' => {
     'TESTS' => 't/*.t'
   }

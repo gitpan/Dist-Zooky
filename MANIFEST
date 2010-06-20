@@ -13,8 +13,12 @@ lib/Dist/Zooky/App/Command/dist.pm
 lib/Dist/Zooky/Core/MakeMaker.pm
 lib/Dist/Zooky/Core/ModBuild.pm
 lib/Dist/Zooky/DistIni.pm
+lib/Dist/Zooky/DistIni/MetaNoIndex.pm
+lib/Dist/Zooky/DistIni/Prereqs.pm
+lib/Dist/Zooky/DistIni/Resources.pm
 lib/Dist/Zooky/License.pm
 lib/Dist/Zooky/Role/Core.pm
+lib/Dist/Zooky/Role/DistIni.pm
 lib/Dist/Zooky/Role/Meta.pm
 t/00-compile.t
 t/01_license.t

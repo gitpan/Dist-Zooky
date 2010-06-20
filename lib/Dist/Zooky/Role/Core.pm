@@ -1,6 +1,6 @@
 package Dist::Zooky::Role::Core;
 BEGIN {
-  $Dist::Zooky::Role::Core::VERSION = '0.02';
+  $Dist::Zooky::Role::Core::VERSION = '0.04';
 }
 
 # ABSTRACT: role for core plugins
@@ -10,49 +10,14 @@ use warnings;
 use Params::Check qw[check];
 use Moose::Role;
 
-use MooseX::Types::Moose qw[Str ArrayRef];
-use Moose::Util::TypeConstraints;
-subtype( 'ArrayRefStr', as ArrayRef[Str] );
-coerce( 'ArrayRefStr', from 'Str', via { [ $_ ] } );
+requires '_build_metadata';
 
-requires 'examine';
-requires 'return_meta';
-
-has 'name' => (
-  is => 'ro',
-  isa => 'Str',
-  init_arg => undef,
-  writer => '_set_name',
-);
-
-has 'version' => (
-  is => 'ro',
-  isa => 'Str',
-  init_arg => undef,
-  writer => '_set_version',
-);
-
-has 'author' => (
-  is => 'ro',
-  isa => 'ArrayRefStr',
-  init_arg => undef,
-  writer => '_set_author',
-  coerce => 1,
-);
-
-has 'license' => (
-  is => 'ro',
-  isa => 'ArrayRefStr',
-  init_arg => undef,
-  writer => '_set_license',
-  coerce => 1,
-);
-
-has 'Prereq' => (
+has 'metadata' => (
   is => 'ro',
   isa => 'HashRef',
   init_arg => undef,
-  writer => '_set_prereqs',
+  lazy => 1,
+  builder => '_build_metadata',
 );
 
 sub _version_to_number {
@@ -93,7 +58,7 @@ Dist::Zooky::Role::Core - role for core plugins
 
 =head1 VERSION
 
-version 0.02
+version 0.04
 
 =head1 AUTHOR
 

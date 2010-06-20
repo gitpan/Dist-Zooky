@@ -1,15 +1,31 @@
 package Dist::Zooky::DistIni;
 BEGIN {
-  $Dist::Zooky::DistIni::VERSION = '0.02';
+  $Dist::Zooky::DistIni::VERSION = '0.04';
 }
 
 # ABSTRACT: Generates a Dist::Zilla dist.ini file
 
 use strict;
 use warnings;
+use Class::MOP;
 use Moose;
+use Module::Load::Conditional qw[check_install];
+use Module::Pluggable search_path => 'Dist::Zooky::DistIni', except => 'Dist::Zooky::DistIni::Prereqs';
+use Dist::Zooky::DistIni::Prereqs;
 
 with 'Dist::Zilla::Role::TextTemplate';
+
+has 'type' => (
+  is => 'ro',
+  isa => 'Str',
+  required => 1,
+);
+
+has 'metadata' => (
+  is => 'ro',
+  isa => 'HashRef',
+  required => 1,
+);
 
 my $template = q|
 name = {{ $name }}
@@ -39,54 +55,32 @@ version = {{ $version }}
 [TestRelease]
 [ConfirmRelease]
 [UploadToCPAN]
-
-{{ 
-   if ( keys %configure ) { 
-      $OUT .= "[Prereq / ConfigureRequires]\n";
-      $OUT .= join(' = ', $_, $configure{$_}) . "\n" for sort keys %configure;
-   }
-   else {
-      $OUT .= ';[Prereq / ConfigureRequires]';
-   }
-}}
-{{ 
-   if ( keys %build ) { 
-      $OUT .= "[Prereq / BuildRequires]\n";
-      $OUT .= join(' = ', $_, $build{$_}) . "\n" for sort keys %build;
-   }
-   else {
-      $OUT .= ';[Prereq / BuildRequires]';
-   }
-}}
-{{ 
-   if ( keys %runtime ) { 
-      $OUT .= "[Prereq]\n";
-      $OUT .= join(' = ', $_, $runtime{$_}) . "\n" for sort keys %runtime;
-   }
-   else {
-      $OUT .= ';[Prereq]';
-   }
-}}
 |;
-
-has 'metadata' => (
-  is => 'ro',
-  isa => 'HashRef',
-  required => 1,
-);
 
 sub write {
   my $self = shift;
   my $file = shift || 'dist.ini';
   my %stash;
-  $stash{$_} = $self->metadata->{Prereq}->{$_}->{requires}
+  $stash{type} = $self->type;
+  $stash{$_} = $self->metadata->{prereqs}->{$_}->{requires}
     for qw(configure build runtime);
-  $stash{$_} = $self->metadata->{$_} for qw(author license version name type);
+  $stash{$_} = $self->metadata->{$_} for qw(author license version name);
   $stash{"${_}s"} = delete $stash{$_} for qw(author license);
   my $content = $self->fill_in_string(
     $template,
     \%stash,
   );
+
+  foreach my $plugin ( $self->plugins ) {
+     Class::MOP::load_class( $plugin );
+     my $add = $plugin->new( type => $self->type, metadata => $self->metadata )->content;
+     next unless $add;
+     $content = join "\n", $content, $add;
+  }
+
+  my $prereqs = Dist::Zooky::DistIni::Prereqs->new( type => $self->type, metadata => $self->metadata )->content;
+  $content = join("\n", $content, $prereqs) if $prereqs;
+
   open my $ini, '>', $file or die "Could not open '$file': $!\n";
   print $ini $content;
   close $ini;
@@ -107,7 +101,7 @@ Dist::Zooky::DistIni - Generates a Dist::Zilla dist.ini file
 
 =head1 VERSION
 
-version 0.02
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -117,7 +111,7 @@ version 0.02
     version => '0.02',
     author => [ 'Duck Dodgers', 'Ivor Biggun' ],
     license => [ 'Perl_5' ],
-    Prereq => {
+    prereqs => {
       'runtime' => {
         'requires' => { 'Moo::Cow' => '0.19' },
       },
@@ -133,13 +127,19 @@ Dist::Zooky::DistIni takes meta data and writes a L<Dist::Zilla> C<dist.ini> fil
 
 =head2 ATTRIBUTES
 
+These attributes are passed to DistIni plugins.
+
 =over
+
+=item C<type>
+
+A required attribute, the type of distribution, C<MakeMaker> for L<ExtUtils::MakeMaker> or
+L<Module::Install> ( yeah, I know ) based distributions, or C<ModBuild> for L<Module::Build>
+based distributions.
 
 =item C<metadata>
 
-A required attribute. This is a C<HASHREF> of meta data it should contain the keys 
-C<name>, C<version>, C<author>, C<license> and C<Prereq>. See the C<SYNOPSIS> for an
-example.
+A required attribute. This is a C<HASHREF> of meta data.
 
 =back
 

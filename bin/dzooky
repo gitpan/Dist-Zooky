@@ -1,7 +1,7 @@
 #!perl
 package dzooky;
 BEGIN {
-  $dzooky::VERSION = '0.02';
+  $dzooky::VERSION = '0.04';
 }
 use strict;
 use warnings;
@@ -19,7 +19,7 @@ dzooky - convert a dist to Dist::Zilla
 
 =head1 VERSION
 
-version 0.02
+version 0.04
 
 =head1 SYNOPSIS
 

@@ -1,6 +1,6 @@
 package Dist::Zooky::License;
 BEGIN {
-  $Dist::Zooky::License::VERSION = '0.02';
+  $Dist::Zooky::License::VERSION = '0.04';
 }
 
 # ABSTRACT: license objects for Dist::Zooky
@@ -53,7 +53,7 @@ Dist::Zooky::License - license objects for Dist::Zooky
 
 =head1 VERSION
 
-version 0.02
+version 0.04
 
 =head1 AUTHOR
 

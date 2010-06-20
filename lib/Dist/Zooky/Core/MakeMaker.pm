@@ -1,6 +1,6 @@
 package Dist::Zooky::Core::MakeMaker;
 BEGIN {
-  $Dist::Zooky::Core::MakeMaker::VERSION = '0.02';
+  $Dist::Zooky::Core::MakeMaker::VERSION = '0.04';
 }
 
 # ABSTRACT: gather meta data for EUMM or M::I dists
@@ -19,8 +19,10 @@ has 'make' => (
   default => sub { can_run('make') },
 );
 
-sub examine {
+sub _build_metadata {
   my $self = shift;
+
+  my $struct;
 
   {
     local $ENV{X_MYMETA} = 1; # Make Module::Install produce MYMETA.yml
@@ -33,17 +35,12 @@ sub examine {
 
   if ( -e 'MYMETA.yml' ) {
 
-    my $struct = $self->meta_from_file( 'MYMETA.yml' );
-    $self->_set_name( $struct->{name} );
-    $self->_set_author( $struct->{author} );
-    $self->_set_license( $struct->{license} );
-    $self->_set_version( $struct->{version} );
-    $self->_set_prereqs( $struct->{prereqs} );
-    
+    $struct = $self->meta_from_file( 'MYMETA.yml' );
+
   }
   else {
 
-    $self->_parse_makefile;
+    $struct = $self->_parse_makefile;
 
   }
 
@@ -52,7 +49,7 @@ sub examine {
     run( command => $cmd, verbose => 0 );
   }
 
-  return;
+  return { %$struct };
 }
 
 sub _parse_makefile {
@@ -60,32 +57,31 @@ sub _parse_makefile {
 
   die "No 'Makefile' found\n" unless -e 'Makefile';
 
-  my $distname;
-  my $author;
-  my $version;
-  my $license;
+  my $struct = { };
+
   my %p;
   my %c;
   my %b;
+
   {
     open my $MAKEFILE, '<', 'Makefile' or die "Could not open 'Makefile': $!\n";
 
     while( local $_ = <$MAKEFILE> ) {
       chomp;
       if ( m|^[\#]\s+AUTHOR\s+=>\s+q\[(.*?)\]$| ) {
-        $author = $1;
+        $struct->{author} = [ $1 ];
         next;
       }
       if ( m|^[\#]\s+LICENSE\s+=>\s+q\[(.*?)\]$| ) {
-        $license = $1;
+        $struct->{license} = [ $1 ];
         next;
       }
       if ( m|^DISTNAME\s+=\s+(.*?)$| ) {
-        $distname = $1;
+        $struct->{name} = $1;
         next;
       }
       if ( m|^VERSION\s+=\s+(.*?)$| ) {
-        $version = $1;
+        $struct->{version} = $1;
         next;
       }
 
@@ -135,21 +131,14 @@ sub _parse_makefile {
 
     close $MAKEFILE;
   }
-  $self->_set_name( $distname );
-  $self->_set_author( $author );
-  $self->_set_license( $license );
-  $self->_set_version( $version );
+
   my $prereqs = { };
   $prereqs->{runtime}   = { requires => \%p } if scalar keys %p;
   $prereqs->{configure} = { requires => \%c } if scalar keys %c;
   $prereqs->{build}     = { requires => \%c } if scalar keys %c;
-  $self->_set_prereqs( $prereqs );
-  return;
-}
+  $struct->{prereqs}    = $prereqs if scalar keys %{ $prereqs };
 
-sub return_meta {
-  my $self = shift;
-  return { map { ( $_, $self->$_ ) } qw(author name version license Prereq) };
+  return $struct;
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -167,17 +156,7 @@ Dist::Zooky::Core::MakeMaker - gather meta data for EUMM or M::I dists
 
 =head1 VERSION
 
-version 0.02
-
-=head1 METHODS
-
-=over
-
-=item C<examine>
-
-=item C<return_meta>
-
-=back
+version 0.04
 
 =head1 AUTHOR
 

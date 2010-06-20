@@ -1,6 +1,6 @@
 package Dist::Zooky;
 BEGIN {
-  $Dist::Zooky::VERSION = '0.02';
+  $Dist::Zooky::VERSION = '0.04';
 }
 
 # ABSTRACT: converts a distribution to Dist::Zilla
@@ -14,12 +14,6 @@ use Dist::Zooky::License;
 use Dist::Zooky::DistIni;
 use Module::Pluggable search_path => 'Dist::Zooky::Core';
 use ExtUtils::MakeMaker ();
-
-has name => (
-  is   => 'ro',
-  isa  => DistName,
-  writer => 'set_name',
-);
 
 has 'make' => (
   is => 'ro',
@@ -56,15 +50,14 @@ sub examine {
   foreach my $plugin ( $self->plugins ) {
     if ( $plugin =~ /$type$/ ) {
       Class::MOP::load_class( $plugin );
-      $core = $plugin->new( ( $type eq 'MakeMaker' and $self->make ? ( make => $self->make ) : () ) );
+      #$core = $plugin->new( ( $type eq 'MakeMaker' and $self->make ? ( make => $self->make ) : () ) );
+      $core = $plugin->new( ( defined $self->make ? ( make => $self->make ) : () ) );
     }
   }
 
   die "No core plugin found for '$type'\n" unless $core;
 
-  $core->examine;
-
-  my $meta = $core->return_meta();
+  my $meta = $core->metadata();
 
   if ( defined $meta->{license} ) {
     my @licenses;
@@ -75,9 +68,7 @@ sub examine {
     $meta->{license} = \@licenses;
   }
 
-  $meta->{type} = $type;
-
-  my $ini = Dist::Zooky::DistIni->new( metadata => $meta );
+  my $ini = Dist::Zooky::DistIni->new( type => $type, metadata => $meta );
   $ini->write;
 
   warn "Wrote 'dist.ini'\n";
@@ -108,7 +99,7 @@ Dist::Zooky - converts a distribution to Dist::Zilla
 
 =head1 VERSION
 
-version 0.02
+version 0.04
 
 =head1 SYNOPSIS
 

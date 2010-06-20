@@ -1,6 +1,6 @@
 package Dist::Zooky::Core::ModBuild;
 BEGIN {
-  $Dist::Zooky::Core::ModBuild::VERSION = '0.02';
+  $Dist::Zooky::Core::ModBuild::VERSION = '0.04';
 }
 
 # ABSTRACT: gather meta data for Module::Build dists
@@ -13,8 +13,10 @@ use IPC::Cmd qw[run can_run];
 with 'Dist::Zooky::Role::Core';
 with 'Dist::Zooky::Role::Meta';
 
-sub examine {
+sub _build_metadata {
   my $self = shift;
+
+  my $struct;
 
   {
     local $ENV{PERL_MM_USE_DEFAULT} = 1;
@@ -25,12 +27,7 @@ sub examine {
 
   if ( -e 'MYMETA.yml' ) {
 
-    my $struct = $self->meta_from_file( 'MYMETA.yml' );
-    $self->_set_name( $struct->{name} );
-    $self->_set_author( $struct->{author} );
-    $self->_set_license( $struct->{license} );
-    $self->_set_version( $struct->{version} );
-    $self->_set_prereqs( $struct->{prereqs} );
+    $struct = $self->meta_from_file( 'MYMETA.yml' );
     
   }
   else {
@@ -44,12 +41,7 @@ sub examine {
     run( command => $cmd, verbose => 0 );
   }
 
-  return;
-}
-
-sub return_meta {
-  my $self = shift;
-  return { map { ( $_, $self->$_ ) } qw(author name version license Prereq) };
+  return { %$struct };
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -67,17 +59,7 @@ Dist::Zooky::Core::ModBuild - gather meta data for Module::Build dists
 
 =head1 VERSION
 
-version 0.02
-
-=head1 METHODS
-
-=over
-
-=item C<examine>
-
-=item C<return_meta>
-
-=back
+version 0.04
 
 =head1 AUTHOR
 

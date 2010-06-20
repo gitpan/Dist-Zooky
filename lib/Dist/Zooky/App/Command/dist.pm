@@ -1,6 +1,6 @@
 package Dist::Zooky::App::Command::dist;
 BEGIN {
-  $Dist::Zooky::App::Command::dist::VERSION = '0.02';
+  $Dist::Zooky::App::Command::dist::VERSION = '0.04';
 }
 
 # ABSTRACT: The one command that Dist::Zooky uses
@@ -37,7 +37,7 @@ Dist::Zooky::App::Command::dist - The one command that Dist::Zooky uses
 
 =head1 VERSION
 
-version 0.02
+version 0.04
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,6 @@
 package Dist::Zooky::App;
 BEGIN {
-  $Dist::Zooky::App::VERSION = '0.02';
+  $Dist::Zooky::App::VERSION = '0.04';
 }
 
 # ABSTRACT: Dist::Zooky's App::Cmd
@@ -23,7 +23,7 @@ Dist::Zooky::App - Dist::Zooky's App::Cmd
 
 =head1 VERSION
 
-version 0.02
+version 0.04
 
 =head1 AUTHOR
 
