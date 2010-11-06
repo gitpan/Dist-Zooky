@@ -1,6 +1,6 @@
 package Dist::Zooky;
 BEGIN {
-  $Dist::Zooky::VERSION = '0.04';
+  $Dist::Zooky::VERSION = '0.06';
 }
 
 # ABSTRACT: converts a distribution to Dist::Zilla
@@ -99,7 +99,7 @@ Dist::Zooky - converts a distribution to Dist::Zilla
 
 =head1 VERSION
 
-version 0.04
+version 0.06
 
 =head1 SYNOPSIS
 

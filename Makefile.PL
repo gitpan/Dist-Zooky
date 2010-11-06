@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
- BEGIN { require 5.008005; } 
+BEGIN { require 5.008005; }
 
 use ExtUtils::MakeMaker 6.31;
 
@@ -25,7 +25,7 @@ my %WriteMakefileArgs = (
     'App::Cmd' => '0.307',
     'CPAN::Meta' => '2.101610',
     'Class::MOP' => '1.03',
-    'Dist::Zilla' => '4.101582',
+    'Dist::Zilla' => '4.102342',
     'ExtUtils::MakeMaker' => '6.56',
     'File::Temp' => '0.22',
     'IPC::Cmd' => '0.58',
@@ -38,7 +38,7 @@ my %WriteMakefileArgs = (
     'Params::Check' => '0.26',
     'Software::License' => '0.101620'
   },
-  'VERSION' => '0.04',
+  'VERSION' => '0.06',
   'test' => {
     'TESTS' => 't/*.t'
   }

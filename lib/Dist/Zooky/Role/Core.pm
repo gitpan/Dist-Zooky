@@ -1,6 +1,6 @@
 package Dist::Zooky::Role::Core;
 BEGIN {
-  $Dist::Zooky::Role::Core::VERSION = '0.04';
+  $Dist::Zooky::Role::Core::VERSION = '0.06';
 }
 
 # ABSTRACT: role for core plugins
@@ -58,7 +58,7 @@ Dist::Zooky::Role::Core - role for core plugins
 
 =head1 VERSION
 
-version 0.04
+version 0.06
 
 =head1 AUTHOR
 

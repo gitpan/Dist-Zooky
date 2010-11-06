@@ -1,6 +1,6 @@
 package Dist::Zooky::DistIni::Prereqs;
 BEGIN {
-  $Dist::Zooky::DistIni::Prereqs::VERSION = '0.04';
+  $Dist::Zooky::DistIni::Prereqs::VERSION = '0.06';
 }
 
 # ABSTRACT: Dist::Zooky DistIni plugin to handle prereqs
@@ -14,29 +14,29 @@ with 'Dist::Zooky::Role::DistIni';
 my $template = q|
 {{ 
    if ( keys %configure ) { 
-      $OUT .= "[Prereq / ConfigureRequires]\n";
+      $OUT .= "[Prereqs / ConfigureRequires]\n";
       $OUT .= join(' = ', $_, $configure{$_}) . "\n" for sort keys %configure;
    }
    else {
-      $OUT .= ';[Prereq / ConfigureRequires]';
+      $OUT .= ';[Prereqs / ConfigureRequires]';
    }
 }}
 {{ 
    if ( keys %build ) { 
-      $OUT .= "[Prereq / BuildRequires]\n";
+      $OUT .= "[Prereqs / BuildRequires]\n";
       $OUT .= join(' = ', $_, $build{$_}) . "\n" for sort keys %build;
    }
    else {
-      $OUT .= ';[Prereq / BuildRequires]';
+      $OUT .= ';[Prereqs / BuildRequires]';
    }
 }}
 {{ 
    if ( keys %runtime ) { 
-      $OUT .= "[Prereq]\n";
+      $OUT .= "[Prereqs]\n";
       $OUT .= join(' = ', $_, $runtime{$_}) . "\n" for sort keys %runtime;
    }
    else {
-      $OUT .= ';[Prereq]';
+      $OUT .= ';[Prereqs]';
    }
 }}
 |;
@@ -68,7 +68,7 @@ Dist::Zooky::DistIni::Prereqs - Dist::Zooky DistIni plugin to handle prereqs
 
 =head1 VERSION
 
-version 0.04
+version 0.06
 
 =head1 METHODS
 

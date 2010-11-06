@@ -1,4 +1,26 @@
 ==============================
+9999-99-99 99:99:99 +0000 HEAD
+==============================
+
+  commit 96f4d21177c0a89e86243a8338937637c714d658
+  Author: Chris 'BinGOs' Williams <chris@bingosnet.co.uk>
+  Date:   Sat Nov 6 10:26:56 2010 +0000
+  
+    Such a noob, remember to actually test before releasing. Updated
+    tests and our own dist.ini *sigh* 
+
+==============================
+2010-11-06 10:23:04 +0000 0.06
+==============================
+
+  commit e87e85e852c14e702ac9475979486b42552d2c10
+  Author: Chris 'BinGOs' Williams <chris@bingosnet.co.uk>
+  Date:   Sat Nov 6 10:23:04 2010 +0000
+  
+    Update the Prereqs generator with the new 'Prereqs' style. Bump
+    required version of Dist::Zilla 
+
+==============================
 2010-06-20 22:27:43 +0100 0.04
 ==============================
 

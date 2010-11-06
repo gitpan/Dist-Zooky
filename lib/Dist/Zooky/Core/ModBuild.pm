@@ -1,6 +1,6 @@
 package Dist::Zooky::Core::ModBuild;
 BEGIN {
-  $Dist::Zooky::Core::ModBuild::VERSION = '0.04';
+  $Dist::Zooky::Core::ModBuild::VERSION = '0.06';
 }
 
 # ABSTRACT: gather meta data for Module::Build dists
@@ -59,7 +59,7 @@ Dist::Zooky::Core::ModBuild - gather meta data for Module::Build dists
 
 =head1 VERSION
 
-version 0.04
+version 0.06
 
 =head1 AUTHOR
 
