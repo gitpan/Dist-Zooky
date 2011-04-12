@@ -4,7 +4,7 @@
       "Chris Williams <chris@bingosnet.co.uk>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.102342, CPAN::Meta::Converter version 2.102400",
+   "generated_by" : "Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110930",
    "license" : [
       "perl_5"
    ],
@@ -49,6 +49,6 @@
          "web" : "http://github.com/bingos/dist-zooky/tree"
       }
    },
-   "version" : "0.06"
+   "version" : "0.08"
 }
 

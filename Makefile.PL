@@ -38,7 +38,7 @@ my %WriteMakefileArgs = (
     'Params::Check' => '0.26',
     'Software::License' => '0.101620'
   },
-  'VERSION' => '0.06',
+  'VERSION' => '0.08',
   'test' => {
     'TESTS' => 't/*.t'
   }

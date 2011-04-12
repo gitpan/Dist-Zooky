@@ -1,6 +1,6 @@
 package Dist::Zooky::App::Command::dist;
 BEGIN {
-  $Dist::Zooky::App::Command::dist::VERSION = '0.06';
+  $Dist::Zooky::App::Command::dist::VERSION = '0.08';
 }
 
 # ABSTRACT: The one command that Dist::Zooky uses
@@ -37,7 +37,7 @@ Dist::Zooky::App::Command::dist - The one command that Dist::Zooky uses
 
 =head1 VERSION
 
-version 0.06
+version 0.08
 
 =head1 DESCRIPTION
 
@@ -60,7 +60,7 @@ Chris Williams <chris@bingosnet.co.uk>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Chris Williams.
+This software is copyright (c) 2011 by Chris Williams.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

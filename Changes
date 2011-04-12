@@ -1,6 +1,18 @@
 ==============================
-9999-99-99 99:99:99 +0000 HEAD
+2011-04-12 13:56:06 +0100 0.08
 ==============================
+
+  commit c6505d74d6c330ef4b85ee577fed347bc8ed0519
+  Author: Chris 'BinGOs' Williams <chris@bingosnet.co.uk>
+  Date:   Tue Apr 12 13:56:06 2011 +0100
+  
+    Resolve an issue with recent Software::License
+
+    Reported by Andreas Koenig [rt.cpan.org #67390]
+
+    Software::License now includes a Custom subclass, we have to
+
+    exclude this from Module::Pluggable
 
   commit 96f4d21177c0a89e86243a8338937637c714d658
   Author: Chris 'BinGOs' Williams <chris@bingosnet.co.uk>

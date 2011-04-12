@@ -1,6 +1,6 @@
 package Dist::Zooky::App;
 BEGIN {
-  $Dist::Zooky::App::VERSION = '0.06';
+  $Dist::Zooky::App::VERSION = '0.08';
 }
 
 # ABSTRACT: Dist::Zooky's App::Cmd
@@ -23,7 +23,7 @@ Dist::Zooky::App - Dist::Zooky's App::Cmd
 
 =head1 VERSION
 
-version 0.06
+version 0.08
 
 =head1 AUTHOR
 
@@ -31,7 +31,7 @@ Chris Williams <chris@bingosnet.co.uk>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Chris Williams.
+This software is copyright (c) 2011 by Chris Williams.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

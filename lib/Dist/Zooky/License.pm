@@ -1,13 +1,13 @@
 package Dist::Zooky::License;
 BEGIN {
-  $Dist::Zooky::License::VERSION = '0.06';
+  $Dist::Zooky::License::VERSION = '0.08';
 }
 
 # ABSTRACT: license objects for Dist::Zooky
 
 use strict;
 use warnings;
-use Module::Pluggable search_path => 'Software::License';
+use Module::Pluggable search_path => 'Software::License', except => qr/(Custom)$/;
 use Class::MOP;
 use Moose;
 
@@ -31,8 +31,8 @@ sub _build_license {
   foreach my $plugin ( $self->plugins ) {
     Class::MOP::load_class( $plugin );
     my $license = $plugin->new({ holder => 'noddy' }); # need to set holder
-    push @licenses, $license 
-      if $license->meta2_name eq $self->metaname 
+    push @licenses, $license
+      if $license->meta2_name eq $self->metaname
       or $license->meta_name  eq $self->metaname;
   }
   return \@licenses;
@@ -53,7 +53,7 @@ Dist::Zooky::License - license objects for Dist::Zooky
 
 =head1 VERSION
 
-version 0.06
+version 0.08
 
 =head1 AUTHOR
 
@@ -61,7 +61,7 @@ Chris Williams <chris@bingosnet.co.uk>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Chris Williams.
+This software is copyright (c) 2011 by Chris Williams.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
