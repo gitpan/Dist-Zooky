@@ -2,7 +2,7 @@ NAME
     Dist::Zooky - converts a distribution to Dist::Zilla
 
 VERSION
-    version 0.08
+    version 0.10
 
 SYNOPSIS
       use Dist::Zooky;

@@ -2,9 +2,9 @@
 use strict;
 use warnings;
 
-BEGIN { require 5.008005; }
+use 5.008005;
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
@@ -13,7 +13,7 @@ my %WriteMakefileArgs = (
   'AUTHOR' => 'Chris Williams <chris@bingosnet.co.uk>',
   'BUILD_REQUIRES' => {},
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+    'ExtUtils::MakeMaker' => '6.30'
   },
   'DISTNAME' => 'Dist-Zooky',
   'EXE_FILES' => [
@@ -38,7 +38,7 @@ my %WriteMakefileArgs = (
     'Params::Check' => '0.26',
     'Software::License' => '0.101620'
   },
-  'VERSION' => '0.08',
+  'VERSION' => '0.10',
   'test' => {
     'TESTS' => 't/*.t'
   }

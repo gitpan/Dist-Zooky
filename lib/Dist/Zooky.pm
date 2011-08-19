@@ -1,6 +1,6 @@
 package Dist::Zooky;
-BEGIN {
-  $Dist::Zooky::VERSION = '0.08';
+{
+  $Dist::Zooky::VERSION = '0.10';
 }
 
 # ABSTRACT: converts a distribution to Dist::Zilla
@@ -99,7 +99,7 @@ Dist::Zooky - converts a distribution to Dist::Zilla
 
 =head1 VERSION
 
-version 0.08
+version 0.10
 
 =head1 SYNOPSIS
 
@@ -125,7 +125,7 @@ The main documentation for this is under L<dzooky>.
 
 =item C<examine>
 
-This does all the heavy-lifting of determining if a distribution is L<ExtUtils::MakeMaker>, 
+This does all the heavy-lifting of determining if a distribution is L<ExtUtils::MakeMaker>,
 L<Module::Install> and L<Module::Build> based, gathers meta data and generates a C<dist.ini>.
 
 =back

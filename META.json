@@ -4,7 +4,7 @@
       "Chris Williams <chris@bingosnet.co.uk>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110930",
+   "generated_by" : "Dist::Zilla version 4.200018, CPAN::Meta::Converter version 2.112150",
    "license" : [
       "perl_5"
    ],
@@ -16,7 +16,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.31"
+            "ExtUtils::MakeMaker" : "6.30"
          }
       },
       "runtime" : {
@@ -42,13 +42,13 @@
    },
    "release_status" : "stable",
    "resources" : {
-      "homepage" : "http://github.com/bingos/dist-zooky/tree",
+      "homepage" : "https://github.com/bingos/dist-zooky",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/bingos/dist-zooky.git",
-         "web" : "http://github.com/bingos/dist-zooky/tree"
+         "url" : "https://github.com/bingos/dist-zooky.git",
+         "web" : "https://github.com/bingos/dist-zooky"
       }
    },
-   "version" : "0.08"
+   "version" : "0.10"
 }
 

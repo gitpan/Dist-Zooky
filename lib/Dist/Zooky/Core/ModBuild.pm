@@ -1,6 +1,6 @@
 package Dist::Zooky::Core::ModBuild;
-BEGIN {
-  $Dist::Zooky::Core::ModBuild::VERSION = '0.08';
+{
+  $Dist::Zooky::Core::ModBuild::VERSION = '0.10';
 }
 
 # ABSTRACT: gather meta data for Module::Build dists
@@ -25,14 +25,19 @@ sub _build_metadata {
     run ( command => $cmd, verbose => 0 );
   }
 
-  if ( -e 'MYMETA.yml' ) {
+  if ( -e 'MYMETA.json' ) {
+
+    $struct = $self->meta_from_file( 'MYMETA.json' );
+
+  }
+  elsif ( -e 'MYMETA.yml' ) {
 
     $struct = $self->meta_from_file( 'MYMETA.yml' );
-    
+
   }
   else {
 
-    die "Couldn\'t find a 'MYMETA.yml' file, giving up\n";
+    die "Couldn\'t find a 'MYMETA.yml or MYMETA.json' file, giving up\n";
 
   }
 
@@ -59,7 +64,7 @@ Dist::Zooky::Core::ModBuild - gather meta data for Module::Build dists
 
 =head1 VERSION
 
-version 0.08
+version 0.10
 
 =head1 AUTHOR
 

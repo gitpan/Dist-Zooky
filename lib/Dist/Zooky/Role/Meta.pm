@@ -1,6 +1,6 @@
 package Dist::Zooky::Role::Meta;
-BEGIN {
-  $Dist::Zooky::Role::Meta::VERSION = '0.08';
+{
+  $Dist::Zooky::Role::Meta::VERSION = '0.10';
 }
 
 # ABSTRACT: Dist::Zooky role for meta parsing
@@ -49,7 +49,7 @@ Dist::Zooky::Role::Meta - Dist::Zooky role for meta parsing
 
 =head1 VERSION
 
-version 0.08
+version 0.10
 
 =head1 METHODS
 

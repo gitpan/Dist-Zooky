@@ -1,6 +1,6 @@
 package Dist::Zooky::Role::DistIni;
-BEGIN {
-  $Dist::Zooky::Role::DistIni::VERSION = '0.08';
+{
+  $Dist::Zooky::Role::DistIni::VERSION = '0.10';
 }
 
 # ABSTRACT: role for DistIni plugins
@@ -39,7 +39,7 @@ Dist::Zooky::Role::DistIni - role for DistIni plugins
 
 =head1 VERSION
 
-version 0.08
+version 0.10
 
 =head1 AUTHOR
 

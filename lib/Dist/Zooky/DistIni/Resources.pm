@@ -1,6 +1,6 @@
 package Dist::Zooky::DistIni::Resources;
-BEGIN {
-  $Dist::Zooky::DistIni::Resources::VERSION = '0.08';
+{
+  $Dist::Zooky::DistIni::Resources::VERSION = '0.10';
 }
 
 # ABSTRACT: Dist::Zooky DistIni plugin to write MetaResources
@@ -16,7 +16,7 @@ sub content {
   return unless my $resources = $self->metadata->{resources};
   my $content = "[MetaResources]\n";
   foreach my $type ( keys %{ $resources } ) {
-    next if $type eq 'license'; 
+    next if $type eq 'license';
     my $ref = ref $resources->{$type};
     if ( $ref eq 'HASH' ) {
       foreach my $item ( keys %{ $resources->{$type} } ) {
@@ -48,7 +48,7 @@ Dist::Zooky::DistIni::Resources - Dist::Zooky DistIni plugin to write MetaResour
 
 =head1 VERSION
 
-version 0.08
+version 0.10
 
 =head1 METHODS
 
