@@ -2,11 +2,15 @@
 abstract: 'converts a distribution to Dist::Zilla'
 author:
   - 'Chris Williams <chris@bingosnet.co.uk>'
-build_requires: {}
+build_requires:
+  File::Spec: 0
+  IO::Handle: 0
+  IPC::Open3: 0
+  Test::More: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200018, CPAN::Meta::Converter version 2.112150'
+generated_by: 'Dist::Zilla version 5.006, CPAN::Meta::Converter version 2.132830'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -15,7 +19,7 @@ name: Dist-Zooky
 requires:
   App::Cmd: 0.307
   CPAN::Meta: 2.101610
-  Class::MOP: 1.03
+  Class::Load: 0
   Dist::Zilla: 4.102342
   ExtUtils::MakeMaker: 6.56
   File::Temp: 0.22
@@ -32,4 +36,4 @@ requires:
 resources:
   homepage: https://github.com/bingos/dist-zooky
   repository: https://github.com/bingos/dist-zooky.git
-version: 0.10
+version: 0.12

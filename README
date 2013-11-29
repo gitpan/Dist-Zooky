@@ -2,7 +2,7 @@ NAME
     Dist::Zooky - converts a distribution to Dist::Zilla
 
 VERSION
-    version 0.10
+    version 0.12
 
 SYNOPSIS
       use Dist::Zooky;
@@ -31,7 +31,7 @@ AUTHOR
     Chris Williams <chris@bingosnet.co.uk>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2011 by Chris Williams.
+    This software is copyright (c) 2013 by Chris Williams.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.
