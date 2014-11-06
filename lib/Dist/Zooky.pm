@@ -1,8 +1,5 @@
 package Dist::Zooky;
-{
-  $Dist::Zooky::VERSION = '0.12';
-}
-
+$Dist::Zooky::VERSION = '0.14';
 # ABSTRACT: converts a distribution to Dist::Zilla
 
 use strict;
@@ -101,7 +98,7 @@ Dist::Zooky - converts a distribution to Dist::Zilla
 
 =head1 VERSION
 
-version 0.12
+version 0.14
 
 =head1 SYNOPSIS
 
@@ -138,7 +135,7 @@ Chris Williams <chris@bingosnet.co.uk>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Chris Williams.
+This software is copyright (c) 2014 by Chris Williams.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
